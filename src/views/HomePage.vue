@@ -9,7 +9,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const eventFiles = ['cio-network-london-nov-2025']
+    const eventFiles = ['london-nov-2025','amsterdam-sept-2025']
     
     const loadedEvents = await Promise.all(
       eventFiles.map(async (file) => {

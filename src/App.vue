@@ -17,7 +17,7 @@ const navigateTo = (path) => {
       </div>
       <nav class="nav-menu">
         <a @click="navigateTo('/')">Events</a>
-        <a href="#team">Team</a>
+        <a @click="navigateTo('/team')">Team</a>
         <a href="#sponsors">Sponsors</a>
         <a href="#contact">Contact</a>
       </nav>

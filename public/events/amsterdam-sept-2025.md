@@ -1,11 +1,11 @@
 ---
-id: cio-network-london-nov-2025
-title: UK CIO Network
-location: Hilton Canary Wharf, Central London, UK
-date: 2025-11-25
+id: amsterdam-sept-2025
+title: CIO Ventures Netherlands
+location: IBIS Centraal, Amsterdam, NL
+date: 2025-09-15
 time: 09:00
-mainTopic: The UK CIO Network gathers the UK's most influential IT Leaders from the UK's largest organisations to network, share best practice and discuss the upcoming challenges and opportunities arising from the latest technology in a private, closed door environment.
-hotelImage: https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800
+mainTopic: TheCIO Ventures gathers the Europe's most influential IT Leaders from the largest organisations to network, share best practice and discuss the upcoming challenges and opportunities arising from the latest technology in a private, closed door environment.
+hotelImage: https://tse1.mm.bing.net/th/id/OIP.NtMyzZrCKIur63zHVY32FAAAAA?w=294&h=180&c=7&r=0&o=7&cb=12&dpr=1.1&pid=1.7&rm=3
 mapUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.7261722423814!2d-0.025024684222844!3d51.50536571780854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b7c1c0e0e9%3A0x7c0f0b0b0b0b0b0b!2sHilton%20London%20Canary%20Wharf!5e0!3m2!1sen!2suk!4v1234567890
 ---
 
