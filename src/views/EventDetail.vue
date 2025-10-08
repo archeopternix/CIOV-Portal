@@ -1,10 +1,28 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { marked } from 'marked'
 
 const route = useRoute()
 const eventData = ref(null)
 const loading = ref(true)
+
+const summaryContent = computed(() => {
+  if (!eventData.value?.content) return ''
+  const summaryMatch = eventData.value.content.match(/# Summary\n\n([\s\S]*?)(?=\n## |$)/)
+  return summaryMatch ? summaryMatch[1].trim() : ''
+})
+
+const topicsList = computed(() => {
+  if (!eventData.value?.content) return []
+  const topicsMatch = eventData.value.content.match(/## Topics Covered\n\n([\s\S]*?)(?=\n## |$)/)
+  if (!topicsMatch) return []
+  
+  const topicsText = topicsMatch[1].trim()
+  return topicsText.split('\n')
+    .filter(line => line.trim().startsWith('-'))
+    .map(line => line.replace(/^-\s*/, '').trim())
+})
 
 onMounted(async () => {
   try {
@@ -59,15 +77,7 @@ onMounted(async () => {
 
       <div class="summary-section">
         <h3>Summary</h3>
-        <p>
-          The pace of change in IT has long been a challenge for anyone responsible for delivering quality services, resulting in a need for fundamental change in the way business operates and the way IT supports it.
-        </p>
-        <p>
-          There is a clear divergence between companies that are adopting innovative technologies and those with encumbering legacy systems.
-        </p>
-        <p>
-          The most effective transformation heads are leading their organisations into an agile technology age, quickly adapting and spearheading innovation across the business. The most successful businesses are tackling technology adoption, interconnectivity, implementation and company culture.
-        </p>
+        <div class="summary-text" v-html="marked(summaryContent)"></div>
         <div class="feature-box">
           <strong>Time is maximised onsite through a combination of:</strong>
         </div>
@@ -94,21 +104,10 @@ onMounted(async () => {
       </div>
 
       <!-- Topics Section -->
-      <div class="topics-section">
+      <div class="topics-section" v-if="topicsList.length > 0">
         <h3>Topics<br>covered</h3>
         <ul class="topics-list">
-          <li>Investigating how to effectively prove the business value of your team</li>
-          <li>How to lead in innovation with budget cuts</li>
-          <li>Risks and resolutions in cyber security</li>
-          <li>Overcoming the challenges of your legacy systems and incorporating new technology</li>
-          <li>Applying AI and innovative tools across your business models</li>
-          <li>Transforming customer experience through predictive analytics and technological transformation</li>
-          <li>How you can plug the skill gap in an undersupplied market</li>
-          <li>The CIO's role of educating the business</li>
-          <li>Managing company culture and developing skills in a time of technology transformation</li>
-          <li>Investigating the impact the cloud, AI and process automation is having on your business</li>
-          <li>How to maximise the immediate through IT, while maintaining agility for the future</li>
-          <li>Tool selection in an over saturated market, for the long and short-term</li>
+          <li v-for="(topic, index) in topicsList" :key="index">{{ topic }}</li>
         </ul>
       </div>
 
@@ -203,10 +202,15 @@ onMounted(async () => {
   color: #333;
 }
 
-.summary-section p {
+.summary-text {
   margin-bottom: 15px;
   font-size: 16px;
   color: #555;
+  line-height: 1.8;
+}
+
+.summary-text :deep(p) {
+  margin-bottom: 15px;
 }
 
 .feature-box {
